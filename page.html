@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h2>Products</h2>
+    <div class="products" id="productList"></div>
+
+    <h2>Cart (<span id="cartCount">0</span>)</h2>
+    <div class="cart">
+      <div id="cartItems">Cart is empty</div>
+      <h3>Total: ₱<span id="total">0</span></h3>
+      <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <script src="interact.js"></script>
+  </body>
+</html>
