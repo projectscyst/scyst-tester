@@ -1,9 +1,9 @@
 let products = [
-  { id: 1, name: "Aqua pure", price: 20 },
-  { id: 2, name: "Tropical orange", price: 50 },
-  { id: 3, name: "Dream coffee", price: 36 },
-  { id: 4, name: "Sour candy", price: 21 },
-  { id: 5, name: "Premium Milk", price: 79 },
+  { id: 1, name: "💧Aqua pure", price: 20, desc: "Fresh purified water"},
+  { id: 2, name: "🍊Tropical orange", price: 50, desc: "Sweet orange drink"},
+  { id: 3, name: "☕Dream coffee", price: 36, desc: "Rich coffee blend"},
+  { id: 4, name: "🍬 Sour candy", price: 21, desc: "Craving candy with a punch?." },
+  { id: 5, name: "🥛Premium Milk", price: 79, desc: "Fresh premium milk"},
 ];
 
 let cart = [];
@@ -19,10 +19,11 @@ function displayProducts() {
     let inCart = cart.find((item) => item.id === p.id);
 
     div.innerHTML = `
-                <p>🛒 ${p.name}</p>
+                <p> ${p.name}</p>
+                <small>${p.desc}</small>
                 <p>Price: ₱${p.price}</p>
                 <button onclick="addToCart(${p.id})" ${inCart ? "disabled" : ""}>
-                    ${inCart ? "Already in cart" : "Add to Cart"}
+                    ${inCart ? "Already in cart" : "🛒Add to Cart"}
                 </button>
             `;
 
@@ -31,14 +32,20 @@ function displayProducts() {
 }
 
 function addToCart(id) {
-  let product = products.find((p) => p.id === id);
+  let existing = cart.find(item => item.id === id);
 
-  cart.push({
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    qty: 1,
-  });
+  if (existing) {
+    existing.qty++; 
+  } else {
+    let product = products.find(p => p.id === id);
+
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      qty: 1,
+    });
+  }
 
   updateCart();
 }
